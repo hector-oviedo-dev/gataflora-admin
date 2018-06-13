@@ -1,3 +1,42 @@
-<p>
-  form-date works!
-</p>
+
+  <table [ngClass]="[(_value)?'formBoxValid':'formBoxInalid']">
+
+    <!--Label-->
+    <tr *ngIf="_label">
+      <td>
+        <label>
+        {{_label}}
+        </label>
+      </td>
+    </tr>
+    <!--Date Control-->
+    <tr>
+      <td>
+
+        <!--Basic Date Control-->
+        <!--<input matInput [matDatepicker]="picker" [placeholder]="_label" [(ngModel)]="_valueDate" (ngModelChange)="onChange($event)" disabled>-->
+
+<!--<ion-datetime displayFormat="MM/DD/YYYY" [placeholder]="_label" [(ngModel)]="_valueDate" (ngModelChange)="onChange($event)"></ion-datetime>-->
+        <!--
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>-->
+
+        <!--Extended hs Control-->
+        <div *ngIf="!_hideTime" style="width:100%;">
+          <input matInput [placeholder]="_labelTime" [(ngModel)]="_placeholderTime" (ngModelChange)="onChange($event)" disabled>
+        </div>
+        <!--<dp-time-select *ngIf="!_hideTime" [(ngModel)]="_valueTime" (ngModelChange)="onChange($event)" [config]="config" #timePicker></dp-time-select>-->
+
+      </td>
+    </tr>
+    <!--Required Message-->
+    <tr *ngIf="!_form.controls['data'].valid">
+      <td>
+        <label color="danger" stacked>
+        * {{_txt_required}}
+        </label>
+      </td>
+    </tr>
+
+  </table>
+<br>

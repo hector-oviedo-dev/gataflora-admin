@@ -1,3 +1,35 @@
-<p>
-  form-input works!
-</p>
+<form [formGroup]="_form" [hidden]="_hidden">
+  <table [hidden]="_hidden" [ngClass]="(_enabled)?((_form.controls['data'].valid)?'formBoxValid':'formBoxInalid'):'formBoxDisabled'">
+
+    <!--Label-->
+    <tr *ngIf="_label">
+      <td>
+        <label>
+        {{_label}}
+        </label>
+      </td>
+    </tr>
+    <!--Input Control-->
+    <tr>
+      <td>
+
+        <input matInput placeholder="{{_placeholder}}" min="{{_min}}" maxlength="{{_max}}" [type]="_input_type"
+          formControlName="data"
+          [ngClass]="(_enabled)?((_form.controls['data'].valid)?'formTextValid':'formTextInalid'):'formTextDisabled'"
+          [(ngModel)]="_value"
+          (keyup)="onChange($event)">
+      </td>
+    </tr>
+    <!--Required Message-->
+    <tr *ngIf="(!_form.controls['data'].valid && _txt_required != undefined)">
+      <td>
+        <label color="danger" stacked>
+        * {{_txt_required}}
+        </label>
+      </td>
+    </tr>
+
+  </table>
+</form>
+
+<br>

@@ -1,3 +1,34 @@
-<p>
-  form-select works!
-</p>
+<form [formGroup]="_form">
+  <table [ngClass]="[(_value)?'formBoxValid':'formBoxInalid']">
+
+    <!--Label-->
+    <tr *ngIf="_label">
+      <td>
+        <label>
+        {{_label}}
+        </label>
+      </td>
+    </tr>
+    <!--Select Control-->
+    <tr>
+      <td>
+
+        <mat-select formControlName="data" [(ngModel)]="_value" (ionChange)="onChange($event)" [placeholder]="_placeholder" [disabled]="!_enabled" style="max-width: 100% !important;">
+          <mat-option *ngFor="let option of _options" [value]="option.value" [disabled]="!_enabled">{{option.label}}</mat-option>
+        </mat-select>
+
+      </td>
+    </tr>
+    <!--Required Message-->
+    <tr *ngIf="!_form.controls['data'].valid">
+      <td>
+        <label color="danger" stacked>
+        * {{_txt_required}}
+        </label>
+      </td>
+    </tr>
+
+  </table>
+</form>
+
+<br>
