@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, Input } from '@angular/core';
 import { ServicesService } from '../services.service';
 import { EventsService } from 'angular4-events';
 import { FormAppComponent } from '../form-app/form-app.component';
@@ -10,6 +10,15 @@ import { FormAppComponent } from '../form-app/form-app.component';
   styleUrls: ['./content-app.component.css']
 })
 export class ContentAppComponent {
+  
+  @Input() set data(value) { 
+    if (value) {
+      console.log("JOINT:",value)
+      this.container.clear();
+      this.onServiceResult(value);
+    }
+  };
+
   @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;
 
   public components = [];

@@ -22,6 +22,20 @@ export class AppComponent {
     this.events.subscribe("onAreas", (data) => this.onAreas(data));
 
     this.events.subscribe("SearchFound", (data) => this.onSearchFound(data));
+
+    let data = this.getExample2()
+    console.log("ledata",data)
+    let areasTMP = [
+      {
+        label:"Label 1",
+        data:data
+      },
+      {
+        label:"Label 2",
+        data:data
+        }
+    ]
+    this.events.publish("onAreas", areasTMP)
   }
   @Input()
   set ready(isReady: boolean) {
@@ -33,7 +47,7 @@ export class AppComponent {
   }
   public onAreas(data) {
     this.areas = [];
-    for (var i = 0; i < data.length; i++) this.areas.push({label:data[i].entitylabel,area:data[i].propertyvalue,bg:data[i].img, bgc:data[i].bgc});
+    for (var i = 0; i < data.length; i++) this.areas.push({label:data[i].label,data:data[i].data});
     this.selectedIndex = 1;
   }
   public onFocusChange(e) {
@@ -47,5 +61,59 @@ export class AppComponent {
         break;
       }
     }
+  }
+  private getExample2() {
+    var form = {
+         type:"form",
+         controls: [
+           {
+             "type":"IMAGE",
+             "source":"http://www.catster.com/wp-content/uploads/2017/12/A-kitten-meowing.jpg",
+             "orientation":"left",
+             "width":"150",
+             "height":"100",
+             "label":"Gata Flora",
+             "description":"Se la ponen: GRITA, Se la sacan: LLORA",
+             "link_type":"LINK",
+             "link":"http://www.catster.com/wp-content/uploads/2017/12/A-kitten-meowing.jpg",
+             "section":""
+           },
+           {
+             "type":"TITLE",
+             "align":"CENTER",
+             "label":"GetGata"
+           },
+           {
+             "type":"TEXT",
+             "align":"CENTER",
+             "label":"Volver a GetFlora"
+           },
+           {
+            "id":"NAME",
+            "type":"INPUT",
+            "value":"",
+            "input_type":"TEXT",
+            "hidden":false,
+            "enabled":true,
+            "required":true,
+            "txt_required":"Debe ingresar su nombre.",
+            "max":15,
+            "min":5,
+            "label":"Nombre",
+            "placeholder":"Ingrese su Nombre"
+          },
+        ],
+        display: {
+          action:"getflora",
+          label_submit:"Aceptar"
+        }
+        };
+      
+        var sections = [];
+        sections.push(form);
+  
+        var res = { success:true, json: { sections:sections } };
+      
+      return res;
   }
 }

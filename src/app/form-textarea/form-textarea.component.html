@@ -13,7 +13,7 @@
     <tr>
       <td>
 
-        <textarea matInput placeholder="{{_placeholder}}" min="{{_min}}" maxlength="{{_max}}"
+        <textarea matInput placeholder="{{_placeholder}}" maxlength="{{_max}}"
           formControlName="data"
           [ngClass]="(_enabled)?((_form.controls['data'].valid)?'formTextValid':'formTextInalid'):'formTextDisabled'"
           [(ngModel)]="_value"
