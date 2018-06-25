@@ -58,6 +58,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material';
+import { DiagramComponent } from './diagram/diagram.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import {
     ContentAppComponent,
     ContentImageComponent,
     ContentTextComponent,
-    ContentTitleComponent
+    ContentTitleComponent,
+    DiagramComponent
   ],
   imports: [
     HttpClientModule,
