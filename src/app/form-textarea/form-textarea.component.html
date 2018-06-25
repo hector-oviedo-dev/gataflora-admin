@@ -1,3 +1,40 @@
-<p>
-  form-textarea works!
-</p>
+<form [formGroup]="_form">
+  <table [ngClass]="(_enabled)?((_form.controls['data'].valid)?'formBoxValid':'formBoxInalid'):'formBoxDisabled'">
+
+    <!--Label-->
+    <tr *ngIf="_label">
+      <td>
+        <label>
+        {{_label}}
+        </label>
+      </td>
+    </tr>
+    <!--Input Control-->
+    <tr>
+      <td>
+
+        <textarea matInput placeholder="{{_placeholder}}" maxlength="{{_max}}"
+          formControlName="data"
+          [ngClass]="(_enabled)?((_form.controls['data'].valid)?'formTextValid':'formTextInalid'):'formTextDisabled'"
+          [(ngModel)]="_value"
+          (keyup)="onChange($event)">
+        </textarea>
+
+      </td>
+    </tr>
+    <!--Required Message-->
+    <tr *ngIf="(!_form.controls['data'].valid && _txt_required != undefined)">
+      <td>
+        <label color="danger" stacked>
+        * {{_txt_required}}
+        </label>
+      </td>
+    </tr>
+
+  </table>
+</form>
+
+<!--Separator-->
+<!--<br>
+<ion-item-divider></ion-item-divider>-->
+<br>

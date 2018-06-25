@@ -1,3 +1,17 @@
-<p>
-  form-app works!
-</p>
+<ng-template #container></ng-template>
+
+<!--Separator-->
+<!--<br>
+<ion-item-divider></ion-item-divider>
+<br>-->
+
+<div>
+  <button ion-button type="button" color="primary" style="width:100%;color:white;"
+    [disabled]="!_valid"
+    [ngClass]="[(_valid)?'classicButton':'classicButtonDisabled']"
+    (click)="submitClick()">{{_label_submit}}
+  </button>
+  <label *ngIf="txtError">
+    * {{txtError}}
+  </label>
+</div>

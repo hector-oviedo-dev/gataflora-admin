@@ -1,3 +1,37 @@
-<p>
-  content-image works!
-</p>
+<table [ngSwitch]="_orientation">
+  <!--Image on LEFT, title, and description on right-->
+  <tr *ngSwitchDefault justify-content-center>
+    <!--Image-->
+    <td col-auto>
+      <img [width]="_width" [height]="_height" [src]="_source">
+    </td>
+  </tr>
+
+  <!--Image on LEFT, title, and description on right-->
+  <tr *ngSwitchCase="'left'" justify-content-start>
+    <!--Image-->
+    <td col-auto>
+      <img [width]="_width" [height]="_height" [src]="_source">
+    </td>
+    <!--Content-->
+    <td col-auto>
+      <h4 [style.text-align]="_text_align">{{_label}}</h4>
+      <label [style.text-align]="_text_align">{{_description}}</label>
+    </td>
+  </tr>
+
+  <!--Image on LEFT, title, and description on right-->
+  <tr *ngSwitchCase="'right'" justify-content-end>
+    <!--Content-->
+    <td col-auto>
+      <h4 [style.text-align]="_text_align">{{_label}}</h4>
+      <label [style.text-align]="_text_align">{{_description}}</label>
+    </td>
+    <!--Image-->
+    <td col-auto align-self-end>
+      <img [width]="_width" [height]="_height" [src]="_source">
+    </td>
+  </tr>
+</table>
+
+<br>

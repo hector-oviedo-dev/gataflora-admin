@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule, FormGroup, FormControl,ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FormAppComponent } from './form-app/form-app.component';
@@ -79,47 +80,31 @@ import { DiagramComponent } from './diagram/diagram.component';
     ContentTitleComponent,
     DiagramComponent
   ],
+  entryComponents:[
+    FormAppComponent,
+    FormButtonComponent,
+    FormCheckComponent,
+    FormCheckListComponent,
+    FormCompoundComponent,
+    FormDateComponent,
+    FormInputComponent,
+    FormRadioComponent,
+    FormSelectComponent,
+    FormTextareaComponent,
+    ContentAppComponent,
+    ContentImageComponent,
+    ContentTextComponent,
+    ContentTitleComponent
+  ],
   imports: [
     HttpClientModule,
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     BrowserAnimationsModule,
     FlexLayoutModule,
 
-    MatDividerModule,
-    MatAutocompleteModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule,
-  ],
-  exports:[
     MatDividerModule,
     MatAutocompleteModule,
     MatButtonModule,

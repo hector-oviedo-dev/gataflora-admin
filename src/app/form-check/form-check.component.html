@@ -1,3 +1,17 @@
-<p>
-  form-check works!
-</p>
+<table class="formBoxValid">
+
+  <!--Input Control-->
+  <tr>
+    <td>
+
+      <div>
+        <label>{{_label}}</label>
+        <mat-checkbox [(ngModel)]="_value" [disabled]="!_enabled" (click)="onChange(i)"></mat-checkbox>
+      </div>
+
+    </td>
+  </tr>
+
+</table>
+
+<br>

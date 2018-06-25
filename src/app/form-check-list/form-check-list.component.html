@@ -1,3 +1,35 @@
-<p>
-  form-check-list works!
-</p>
+
+  <table [ngClass]="[(_valid)?'formBoxValid':'formBoxInalid']">
+
+    <!--Label-->
+    <tr *ngIf="_label">
+      <td>
+        <label>
+        {{_label}}
+        </label>
+      </td>
+    </tr>
+    <!--Radio Control-->
+    <tr>
+      <td>
+
+        <table>
+          <tr *ngFor="let option of _options;let i = index;">
+            <label>{{option.label}}</label>
+            <mat-checkbox [(checked)]="option.check" [disabled]="!_enabled" (click)="onChange(i)"></mat-checkbox>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+    <!--Required Message-->
+    <tr *ngIf="(!_valid && _txt_required != undefined)">
+      <td>
+        <label color="danger" stacked>
+        * {{_txt_required}}
+        </label>
+      </td>
+    </tr>
+
+  </table>
+<br>
