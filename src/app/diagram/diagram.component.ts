@@ -9,6 +9,8 @@ import * as go from 'gojs';
   styleUrls: ['./diagram.component.css']
 })
 export class DiagramComponent implements OnInit {
+  public id;
+
   public diagram: go.Diagram = new go.Diagram();
 
   @ViewChild('diagramDiv')

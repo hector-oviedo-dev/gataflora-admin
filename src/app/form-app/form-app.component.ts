@@ -6,6 +6,8 @@ import { ContentImageComponent } from '../content-image/content-image.component'
 import { ContentTextComponent } from '../content-text/content-text.component';
 import { ContentTitleComponent } from '../content-title/content-title.component';
 
+import { DiagramComponent } from '../diagram/diagram.component';
+
 import { FormButtonComponent } from '../form-button/form-button.component';
 import { FormCheckComponent } from '../form-check/form-check.component';
 import { FormCheckListComponent } from '../form-check-list/form-check-list.component';
@@ -88,6 +90,16 @@ export class FormAppComponent {
       let result;
 
       switch (this.values[i].type) {
+        case "DIAGRAM":
+        arr = ["id"];
+          result = (this.validateComponent(this.values[i],arr));
+          if (!result.valid) {
+            let msg = "MalFormed: Missing at object of type: " + this.values[i].type + " objects: " + result.missing;
+            this.events.publish("onError", msg);
+            return;
+          } else this.addDiagramComponent(this.values[i]);
+          
+        break;
         case "WIDGET":
         arr = ["id","action","controls"];
         result = (this.validateComponent(this.values[i],arr));
@@ -225,6 +237,15 @@ export class FormAppComponent {
     if (result.missing.length) result.valid = false;
 
     return result;
+  }
+  public addDiagramComponent(obj) {
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(DiagramComponent);
+    const component = this.container.createComponent(componentFactory);
+
+    (<DiagramComponent>component.instance).id       = obj.id;
+
+    this.components.push(component);
+    return true;
   }
   public addImage(value:any) {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(ContentImageComponent);
